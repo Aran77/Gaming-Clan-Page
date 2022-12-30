@@ -16,7 +16,7 @@ app = Flask(__name__,
 
 def getdata():
     d=[]
-    members = ['74858C942F89E7CD','2C46189ECA58F6E9','D737372B153287B6','35D271462D9D51C9','DAB84E33EF1FB7A3','353294D952B83FE5','9C407141D884E344','AD04C0C21AACF21B']
+    members = ['74858C942F89E7CD','2C46189ECA58F6E9','D737372B153287B6','35D271462D9D51C9','DAB84E33EF1FB7A3','353294D952B83FE5','9C407141D884E344','AD04C0C21AACF21B','515FE93B4DD376F0','CC97CACB108F523C']
     for member in members:
         params = member
         response = requests.get(api_url + params)
@@ -38,13 +38,15 @@ def getdata():
                 "seasonKills" : season_kills,
                 "seasonDamage": season_damage,
                 "seasonWins" : season_wins,
-                "seasonAVGKills" : season_kills / season_games_played
+                "seasonAVGKills" : season_kills / season_games_played,
+                "seasonAVGDamage" : season_damage /season_games_played,
+                "seasonAVGWins" : (season_wins / season_games_played)*100
                 }
             )
 
         else:
             print('shit')
-    
+
     return(d)
 
 @app.route('/')
