@@ -1,6 +1,7 @@
 import tkinter as tk
 from tinydb import TinyDB, Query, where
 from tkinter import messagebox
+import json
 
 # Open the database
 db = TinyDB('db.json')
@@ -32,20 +33,20 @@ for row in db.all():
 def delete_row():
     # Get the index of the selected row
     index = listbox.curselection()[0]
-
     # Get the ID of the selected row
     row_id = listbox.get(index)
-
-
+    #convert the row_id into a dictionary!
+    row_dict = json.loads(row_id.replace("'",'"'))
     # Confirm that the user wants to delete the row
     confirm = tk.messagebox.askyesno("Delete row?", "Are you sure you want to delete this row?")
     if confirm:
-        print(index)
+        # get the key value to delete
+        todel = row_dict.get('userid')
         # Delete the row from the database
-        db.remove(where('key') == index)
+        db.remove(where('userid')==todel)
         # Update the list
         listbox.delete(index)
-
+#insert a delete button
 button = tk.Button(window, text="Delete", command=delete_row)
 button.pack()
 
@@ -56,13 +57,10 @@ input_field.pack()
 def add_row():
     # Get the data from the input field
     data = input_field.get()
-
     # Add the data as a new row in the database
     db.insert({'userid': data})
-
     # Clear the input field
     input_field.delete(0, tk.END)
-
     # Update the list
     listbox.insert(tk.END, {'userid': data})
 # Add a member button
