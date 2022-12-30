@@ -2,6 +2,7 @@ from flask import Flask, render_template
 import requests
 import json
 import pandas as pd
+from tinydb import TinyDB, Query, where
 
 headers = {
     "Accept": "application/json",
@@ -13,6 +14,11 @@ api_url = "https://nykloo.com/api/PlayerStats/Stats/"
 STATIC_FOLDER = 'templates/assets'
 app = Flask(__name__,
             static_folder=STATIC_FOLDER)
+def loadMembers():
+    db = TinyDB('db.json')
+    member = Query()
+    for x in member:
+        print(x)
 
 def getdata():
     d=[]
@@ -51,6 +57,7 @@ def getdata():
 
 @app.route('/')
 def home():
+    members = loadMembers()
     scoreboard = getdata()
     return render_template('scoreboard.html', scoreboard=scoreboard)
 
