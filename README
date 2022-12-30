@@ -1,3 +1,13 @@
-One page website for a gaming clan. Member stats pulled from. Clan members list stored in db.json.
+#Gaming Clan Website
 
-Small utility program to maintain members list.
+A simple one page website for a gaming clan. Member stats pulled from an API.
+
+Clan members list stored in db.json.
+
+Small utility program (editdb.py) to maintain members list.
+
+
+###TO DO:
+-Separate the API call into a separate program to be run on chron once every hour and store resulting data in TinyDB
+-Remove API call from main program and include DB lookup instead.
+-Load members list from DB
