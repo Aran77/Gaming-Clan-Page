@@ -10,4 +10,4 @@ Small utility program (editdb.py) to maintain members list.
 ###TO DO:
 -Separate the API call into a separate program to be run on chron once every hour and store resulting data in TinyDB
 -Remove API call from main program and include DB lookup instead.
--Load members list from DB
+-Load members list from DB  *** DONE ***
