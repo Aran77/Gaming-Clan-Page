@@ -1,4 +1,6 @@
-#Gaming Clan Website
+***Gaming Clan Website***
+
+Requires Flash, TinyDB, Requests
 
 A simple one page website for a gaming clan. Pulls member details and scores from a TinyDB Database.
 
