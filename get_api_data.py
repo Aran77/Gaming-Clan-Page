@@ -3,6 +3,15 @@ import json
 import pandas as pd
 from tinydb import TinyDB, Query, where
 
+#set headers for json
+headers = {
+    "Accept": "application/json",
+    "Content-Type": "application/json"
+}
+
+#set the URL for the API
+api_url = "https://nykloo.com/api/PlayerStats/Stats/"
+
 #Load a list of members from db.json a TinyDB
 def loadMembers():
     #members list stored in db.json, load it into DB object
@@ -27,7 +36,7 @@ def writetoDB(d):
     db.close()
 
 #get the data from the API!
-def getdata(members):
+def getDatafrom_API(members):
     d=[]
     # loop the members list and get API reponse for each
     for member in members:
@@ -70,4 +79,4 @@ def getdata(members):
 #call the load members function and save it in a members variable.
 members = loadMembers()
 #load scores and save to scoreboard ready to pass to FLASK
-scoreboard = getData(members)
+scoreboard = getDatafrom_API(members)
